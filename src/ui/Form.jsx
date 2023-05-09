@@ -78,17 +78,17 @@ export const Form = () => {
             <div className="form__contenedor">
                 <div className="header__day">
                     <label htmlFor="day">Day</label>
-                    <input className={`${!errors.isFilled && 'isFilled__error'} ${!errors.isValid && 'isValid__error'}`} placeholder='2' onChange={onInputChange} type="number" id='day' name='day' min={1} max={40} />
+                    <input className={`${!errors.isFilled && 'isFilled__error'} ${!errors.isValid && 'isValid__error'}`} placeholder='DD' onChange={onInputChange} type="number" id='day' name='day' min={1} max={40} />
                     <p>{!errors.isFilled && 'You must fill all the fields'}</p>
                     <p>{!errors.isValid && 'Date is not valid'}</p>
                 </div>
                 <div className="header__month">
                     <label htmlFor="month">Month</label>
-                    <input className={`${!errors.isFilled && 'isFilled__error'} ${!errors.isValid && 'isValid__error'}`} placeholder='10' onChange={onInputChange} type="number" id='month' name='month' min={1} max={14} />
+                    <input className={`${!errors.isFilled && 'isFilled__error'} ${!errors.isValid && 'isValid__error'}`} placeholder='MM' onChange={onInputChange} type="number" id='month' name='month' min={1} max={14} />
                 </div>
                 <div className="header__year">
                     <label htmlFor="year">Year</label>
-                    <input className={`${!errors.isFilled && 'isFilled__error'} ${!errors.isValid && 'isValid__error'}`} placeholder='1997' onChange={onInputChange} type="number" id='year' name='year' min={1900} max={2040} />
+                    <input className={`${!errors.isFilled && 'isFilled__error'} ${!errors.isValid && 'isValid__error'}`} placeholder='YYYY' onChange={onInputChange} type="number" id='year' name='year' min={1900} max={2040} />
                 </div>
             </div>
 
