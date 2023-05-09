@@ -44,7 +44,6 @@ label {
 
 input {
   padding: 1rem;
-  margin: 0;
   width: 8rem;
   border-radius: .5rem;
   outline: none;
@@ -88,7 +87,7 @@ p {
 }
 
 hr {
-  margin-top: -3rem;
+  margin-top: -5rem;
   margin-bottom: 4rem;
   border: 1px solid hsl(0, 0%, 94%);
 }
@@ -107,8 +106,9 @@ hr {
   border-radius: 50%;
   border: none;
   display: block;
-  margin: 0 auto;
+  margin: 2rem auto;
 }
+
 
 .btn__submit:hover {
   cursor: pointer;
