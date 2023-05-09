@@ -1,0 +1,163 @@
+html {
+  font-size: 62.5%;
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+  background-color: hsl(0, 0%, 94%);
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.contenedor {
+  background-color: hsl(0, 0%, 100%);
+  padding: 4rem;
+  max-width: 50rem;
+  border-radius: 2rem 2rem 30% 2rem;
+  margin: 20rem auto;
+}
+
+.form__contenedor {
+  display: flex;
+  justify-content: space-between;
+}
+
+.header__day,
+.header__month,
+.header__year {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  color: hsl(0, 1%, 44%);
+  margin-bottom: .2rem;
+}
+
+@media (min-width: 375px) {
+  label {
+    font-size: 1.6rem;
+  }
+}
+
+input {
+  padding: 1rem;
+  margin: 0;
+  width: 8rem;
+  border-radius: .5rem;
+  outline: none;
+  border: 1px solid hsl(0, 0%, 94%);
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+@media (min-width: 375px) {
+  input {
+    width: 10rem;
+  }
+}
+
+input:focus {
+  border-color: hsl(259, 100%, 65%);
+}
+
+::placeholder {
+  color: hsl(0, 0%, 94%);
+}
+
+.isFilled__error {
+  border-color: red;
+}
+
+.isFilled__error:focus{
+  border-color: red;
+}
+
+.isValid__error {
+  border-color: red;
+}
+.isValid__error:focus {
+  border-color: red;
+}
+
+p {
+  color: red;
+  margin: 0;
+}
+
+hr {
+  margin-top: -3rem;
+  margin-bottom: 4rem;
+  border: 1px solid hsl(0, 0%, 94%);
+}
+
+@media (min-width: 375px) {
+  hr {
+    margin-bottom: 0;
+  }
+}
+
+.btn__submit {
+  position: relative;
+  height: 6rem;
+  width: 6rem;
+  background: hsl(259, 100%, 65%);
+  border-radius: 50%;
+  border: none;
+  display: block;
+  margin: 0 auto;
+}
+
+.btn__submit:hover {
+  cursor: pointer;
+  background-color: hsl(0, 0%, 8%);
+}
+
+@media (min-width: 375px) {
+  .btn__submit {
+    margin-left: 90%;
+    margin-top: 2rem;
+  }
+}
+
+.btn__submit::after {
+  position: absolute;
+  content: '';
+  background-image: url('../src/assets/images/icon-arrow.svg');
+  background-repeat: no-repeat;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-size: cover;
+  width: 2rem;
+  height: 2rem;
+}
+
+h2 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+span {
+  font-size: 4rem;
+  color: hsl(259, 100%, 65%);
+}
+
+@media (min-width: 375px) {
+  h2 {
+    font-size: 4rem;
+    margin-top: 1rem;
+  }
+
+  span {
+    font-size: 6rem;
+  }
+}
+
+
+
+
+
+
