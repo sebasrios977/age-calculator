@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useForm } from '../hooks/useForm'
 import { calcularFecha } from '../helpers/calcularFecha';
-
+import { useLeap } from '../hooks/useLeap';
 
 export const Form = () => {
-    const [isLeapYear, setIsLeapYear] = useState(false);
     const [errors, setErrors] = useState({
         isValid: true,
         isFilled: true,
+        isFuture: false,
     })
     const [isValid, setIsValid] = useState(false);
     const [dateSpent, setDateSpent] = useState({
@@ -21,6 +21,7 @@ export const Form = () => {
         month: ''
     });
 
+    const {isLeapYear} = useLeap(year);
 
     const monthsWith31Days = ['1', '3', '5', '7', '8', '10', '12'];
     const monthsWith30Days = ['4', '6', '9', '11'];
@@ -43,18 +44,10 @@ export const Form = () => {
             isFilled: true,
         })
 
-        if((year % 4 == 0) && (year % 100 == 0) && (year % 400 == 0) || (year % 4 == 0) && (year % 100 != 0)) {
-            setIsLeapYear(true);
-        } else {
-            setIsLeapYear(false);
-        }
-
         if(monthsWith31Days.includes(month) && day > 31 ||
         monthsWith30Days.includes(month) && day > 30 ||
         (month == monthsWith28Days) && (isLeapYear) && (day > 29) ||
-        (month == monthsWith28Days) && (!isLeapYear) && (day > 28) ||
-        month > 12 || year > new Date().getFullYear()
-        ) {
+        (month == monthsWith28Days) && (!isLeapYear) && (day > 28)) {
             setErrors({
                 ...errors,
                 isValid: false,
@@ -63,12 +56,30 @@ export const Form = () => {
         }
 
         setErrors({
+            ...errors,
             isFilled: true,
             isValid: true,
-        })
+        });
+
+        const currentDate = new Date();
+
+        if(year > currentDate.getFullYear() ||
+            year >= currentDate.getFullYear() && month > (currentDate.getMonth() + 1) ||
+            year >= currentDate.getFullYear() && month >= (currentDate.getMonth() + 1) && day > currentDate.getDate()) {
+            setErrors({
+                ...errors,
+                isFuture: true,
+            });
+            return;
+        }
+
+        setErrors({
+            isFilled: true,
+            isValid: true,
+            isFuture: false,
+        });
 
         setDateSpent(calcularFecha(formState));
-
     }
     
 
@@ -78,17 +89,18 @@ export const Form = () => {
             <div className="form__contenedor">
                 <div className="header__day">
                     <label htmlFor="day">Day</label>
-                    <input className={`${!errors.isFilled && 'isFilled__error'} ${!errors.isValid && 'isValid__error'}`} placeholder='DD' onChange={onInputChange} type="number" id='day' name='day' min={1} max={40} />
+                    <input className={`${!errors.isFilled || !errors.isValid || errors.isFuture ? 'isError' : ''}`} placeholder='DD' onChange={onInputChange} type="number" id='day' name='day' min={1} max={32} />
                     <p>{!errors.isFilled && 'You must fill all the fields'}</p>
                     <p>{!errors.isValid && 'Date is not valid'}</p>
+                    <p>{errors.isFuture && 'Date can not be in the future'}</p>
                 </div>
                 <div className="header__month">
                     <label htmlFor="month">Month</label>
-                    <input className={`${!errors.isFilled && 'isFilled__error'} ${!errors.isValid && 'isValid__error'}`} placeholder='MM' onChange={onInputChange} type="number" id='month' name='month' min={1} max={14} />
+                    <input className={`${!errors.isFilled || !errors.isValid || errors.isFuture ? 'isError' : ''}`} placeholder='MM' onChange={onInputChange} type="number" id='month' name='month' min={1} max={12} />
                 </div>
                 <div className="header__year">
                     <label htmlFor="year">Year</label>
-                    <input className={`${!errors.isFilled && 'isFilled__error'} ${!errors.isValid && 'isValid__error'}`} placeholder='YYYY' onChange={onInputChange} type="number" id='year' name='year' min={1900} max={2040} />
+                    <input className={`${!errors.isFilled || !errors.isValid || errors.isFuture ? 'isError' : ''}`} placeholder='YYYY' onChange={onInputChange} type="number" id='year' name='year' min={1900} max={2040} />
                 </div>
             </div>
 

@@ -5,6 +5,12 @@ html {
   background-color: hsl(0, 0%, 94%);
 }
 
+body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
 *, *:before, *:after {
   box-sizing: inherit;
 }
@@ -14,7 +20,6 @@ html {
   padding: 4rem;
   max-width: 50rem;
   border-radius: 2rem 2rem 30% 2rem;
-  margin: 20rem auto;
 }
 
 .form__contenedor {
@@ -44,12 +49,17 @@ label {
 
 input {
   padding: 1rem;
+  margin: .4rem;
   width: 8rem;
   border-radius: .5rem;
   outline: none;
   border: 1px solid hsl(0, 0%, 94%);
   font-size: 2rem;
   font-weight: 700;
+}
+
+.header__day input {
+  margin-left: 0;
 }
 
 @media (min-width: 375px) {
@@ -66,23 +76,23 @@ input:focus {
   color: hsl(0, 0%, 94%);
 }
 
-.isFilled__error {
+.isError {
   border-color: red;
 }
 
-.isFilled__error:focus{
-  border-color: red;
-}
-
-.isValid__error {
-  border-color: red;
-}
-.isValid__error:focus {
+.isError:focus{
   border-color: red;
 }
 
 p {
   color: red;
+  margin: 0;
+  font-size: .9rem;
+  width: 8rem;
+}
+
+.isLeapYear {
+  color: hsl(259, 100%, 65%);
   margin: 0;
 }
 
